@@ -1,6 +1,6 @@
 <?php
 // Namespace
-use Microblog\{Usuario}; 
+use Microblog\{Usuario, Utilitarios}; 
 require_once "../inc/cabecalho-admin.php";
 
 // Objeto
