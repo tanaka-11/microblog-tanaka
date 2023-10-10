@@ -13,9 +13,15 @@ if(isset($_POST['inserir'])){
 	$usuario->setNome($_POST['nome']);
 	$usuario->setEmail($_POST['email']);
 	$usuario->setTipo($_POST['tipo']);
+
 	// Passando o metodo de codificação para o setSenha
 	$usuario->setSenha($usuario->codificaSenha($_POST['senha']));
 
+	// Chamando metodo
+	$usuario->inserir();
+
+	// Redirecionamento
+	header('location:usuarios.php');
 }
 
 ?>
