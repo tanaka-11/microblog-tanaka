@@ -40,7 +40,7 @@ $dadosDoUsuario = $usuario->listar();
 				<tbody>
 
 				<?php foreach($dadosDoUsuario as $usuarios){ ?>
-					<!-- Dados do usuario -->
+					<!-- Dados dos usuarios -->
 					<tr>
 						<td> <?=$usuarios['nome']?> </td>
 						<td> <?=$usuarios['email']?> </td>
