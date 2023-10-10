@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06-Out-2023 às 16:50
+-- Tempo de geração: 10-Out-2023 às 16:48
 -- Versão do servidor: 10.4.28-MariaDB
 -- versão do PHP: 8.2.4
 
@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `microblog_tiago`
+-- Banco de dados: `microblog_tanaka`
 --
-CREATE DATABASE IF NOT EXISTS `microblog_tiago` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `microblog_tiago`;
+CREATE DATABASE IF NOT EXISTS `microblog_tanaka` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `microblog_tanaka`;
 
 -- --------------------------------------------------------
 
@@ -65,6 +65,15 @@ CREATE TABLE `usuarios` (
   `senha` varchar(255) NOT NULL,
   `tipo` enum('admin','editor') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `tipo`) VALUES
+(1, 'Marina Tanaka', 'huttenloucher@gmail.com', '$2y$10$rDfybovtq2gaKLarynqCX.bv0Hf0zVOKLb.H6gb.1NsZsRDDCtZ.S', 'admin'),
+(2, 'Luis Fernando', 'aaa@gmail.com', '$2y$10$p.YyXyiLDb1XlVA9qzZk2uvVILPnlYmjZyP5LHyz2N.BV2k6h6nyq', 'editor'),
+(3, 'Beatriz Kogici', 'mozin@gmail.com', '$2y$10$LBxSvnegDdq/ICxeaq/N8ONH1hteQ3igXPLCm7CT5DKitQD2/.0S2', 'editor');
 
 --
 -- Índices para tabelas despejadas
@@ -111,7 +120,7 @@ ALTER TABLE `noticias`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para despejos de tabelas
