@@ -1,7 +1,24 @@
-<?php 
+<?php
+// Require do cabeçalho ja com o autoload e use. 
+use Microblog\Usuario;
 require_once "../inc/cabecalho-admin.php";
-?>
 
+
+
+if(isset($_POST['inserir'])){
+	// Criação do objeto
+	$usuario = new Usuario;
+
+	// Dados do objeto
+	$usuario->setNome($_POST['nome']);
+	$usuario->setEmail($_POST['email']);
+	$usuario->setTipo($_POST['tipo']);
+	// Passando o metodo de codificação para o setSenha
+	$usuario->setSenha($usuario->codificaSenha($_POST['senha']));
+
+}
+
+?>
 
 <div class="row">
 	<article class="col-12 bg-white rounded shadow my-1 py-4">

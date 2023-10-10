@@ -17,7 +17,8 @@ class Usuario {
         $this->conexao = Banco::conecta();
     }
 
-    // METODOS CRUD.
+    // METODOS CRUD
+
     // Metodo para inserir(INSERT) dados de usuario.
     public function inserir(): void {
         $sql = "INSERT INTO usuarios(nome, email, senha, tipo) VALUES (:nome, :email, :senha, :tipo)";
@@ -31,6 +32,13 @@ class Usuario {
         } catch (Exception $erro) {
             die("Erro ao inserir usuário". $erro->getMessage());
         }
+    }
+
+    // METODOS DE CODIFICAÇÃO/COMPARAÇÃO DA SENHA
+
+    // Metodo para codificação
+    public function codificaSenha(string $senha): string {
+        return password_hash($senha, PASSWORD_DEFAULT);
     }
 
    // Getters e Setters
@@ -61,7 +69,7 @@ class Usuario {
     }
 
     public function setEmail(string $email): self {
-        $this->email = filter_var($email, FILTER_SANITIZE_SPECIAL_CHARS);
+        $this->email = filter_var($email, FILTER_SANITIZE_EMAIL);
         return $this;
     }
 
@@ -71,7 +79,7 @@ class Usuario {
     }
 
     public function setSenha(string $senha): self {
-        $this->senha = password_hash($senha, PASSWORD_BCRYPT);
+        $this->senha = filter_var($senha, FILTER_SANITIZE_SPECIAL_CHARS);
         return $this;
     }
 
