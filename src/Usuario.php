@@ -17,6 +17,22 @@ class Usuario {
         $this->conexao = Banco::conecta();
     }
 
+    // METODOS CRUD.
+    // Metodo para inserir(INSERT) dados de usuario.
+    public function inserir(): void {
+        $sql = "INSERT INTO usuarios(nome, email, senha, tipo) VALUES (:nome, :email, :senha, :tipo)";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":nome", $this->nome, PDO::PARAM_STR);
+            $consulta->bindValue(":email", $this->email, PDO::PARAM_STR);
+            $consulta->bindValue(":senha", $this->senha, PDO::PARAM_STR);
+            $consulta->bindValue(":tipo", $this->tipo, PDO::PARAM_STR);
+            $consulta->execute();
+        } catch (Exception $erro) {
+            die("Erro ao inserir usuário". $erro->getMessage());
+        }
+    }
+
    // Getters e Setters
 
    // ID
