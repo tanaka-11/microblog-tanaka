@@ -1,5 +1,13 @@
-<?php 
+<?php
+// Namespace
+use Microblog\{Usuario}; 
 require_once "../inc/cabecalho-admin.php";
+
+// Objeto
+$usuario = new Usuario;
+
+// Instancia
+$dadosDoUsuario = $usuario->listar();
 ?>
 
 
@@ -7,7 +15,7 @@ require_once "../inc/cabecalho-admin.php";
 	<article class="col-12 bg-white rounded shadow my-1 py-4">
 		
 		<h2 class="text-center">
-		Usuários <span class="badge bg-dark">X</span>
+		Usuários <span class="badge bg-dark"><?=count($dadosDoUsuario)?></span>
 		</h2>
 
 		<p class="text-center mt-5">
@@ -17,9 +25,10 @@ require_once "../inc/cabecalho-admin.php";
 		</p>
 				
 		<div class="table-responsive">
-		
+			<!-- COMEÇO DA TABELA -->
 			<table class="table table-hover">
 				<thead class="table-light">
+				
 					<tr>
 						<th>Nome</th>
 						<th>E-mail</th>
@@ -30,22 +39,27 @@ require_once "../inc/cabecalho-admin.php";
 
 				<tbody>
 
+				<?php foreach($dadosDoUsuario as $usuarios){ ?>
+					<!-- Dados do usuario -->
 					<tr>
-						<td> Nome... </td>
-						<td> E-mail... </td>
-						<td> Tipo... </td>
+						<td> <?=$usuarios['nome']?> </td>
+						<td> <?=$usuarios['email']?> </td>
+						<td> <?=$usuarios['tipo']?> </td>
 						<td class="text-center">
-							<a class="btn btn-warning" 
-							href="usuario-atualiza.php">
+
+
+						<!-- Links dinamicos -->
+						<a class="btn btn-warning" href="usuario-atualiza.php?id=<?=$usuarios['id']?>">
 							<i class="bi bi-pencil"></i> Atualizar
-							</a>
+						</a>
 						
-							<a class="btn btn-danger excluir" 
-							href="usuario-exclui.php">
+						<a class="btn btn-danger excluir" href="usuario-exclui.php?id=<?=$usuarios['id']?>">
 							<i class="bi bi-trash"></i> Excluir
-							</a>
+						</a>
+
 						</td>
 					</tr>
+				<?php } ?>		
 
 				</tbody>                
 			</table>

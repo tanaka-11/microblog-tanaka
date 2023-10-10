@@ -34,6 +34,19 @@ class Usuario {
         }
     }
 
+    // Metodo de exibição(SELECT) dos usuarios.
+    public function listar(): array {
+        $sql = "SELECT * FROM usuarios ORDER BY nome";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->execute();
+            $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $erro) {
+            die("Erro ao exibir dados dos usuários". $erro->getMessage());
+        }
+        return $resultado;
+    }
+
     // METODOS DE CODIFICAÇÃO/COMPARAÇÃO DA SENHA
 
     // Metodo para codificação
