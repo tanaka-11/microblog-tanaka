@@ -18,7 +18,6 @@ class Usuario {
     }
 
     // METODOS CRUD
-
     // Metodo para inserir(INSERT) dados de usuario.
     public function inserir(): void {
         $sql = "INSERT INTO usuarios(nome, email, senha, tipo) VALUES (:nome, :email, :senha, :tipo)";
@@ -63,14 +62,15 @@ class Usuario {
 
     // Metodo de atualização(UPDATE) de dados de UM usuario
     public function atualizar(): void {
-        $sql = "UPDATE usuarios SET nome = :nome, email = :email, senha = :senha, tipo = :tipo WHERE id - :id";
+        $sql = "UPDATE usuarios SET nome = :nome, email = :email,
+        senha = :senha, tipo = :tipo WHERE id = :id";
         try {
             $consulta = $this->conexao->prepare($sql);
-            $consulta->bindValue("id", $this->id, PDO::PARAM_INT);
+            $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
             $consulta->bindValue(":nome", $this->nome, PDO::PARAM_STR);
             $consulta->bindValue(":email", $this->email, PDO::PARAM_STR);
-            $consulta->bindValue("senha", $this->senha, PDO::PARAM_STR);
-            $consulta->bindValue("tipo", $this->tipo, PDO::PARAM_STR);
+            $consulta->bindValue(":senha", $this->senha, PDO::PARAM_STR);
+            $consulta->bindValue(":tipo", $this->tipo, PDO::PARAM_STR);
             $consulta->execute();
         } catch (Exception $erro) {
             die("Erro ao atualizar dados de um usuário". $erro->getMessage());
@@ -79,14 +79,25 @@ class Usuario {
 
 
     // METODOS DE CODIFICAÇÃO/COMPARAÇÃO DA SENHA
-
-    // Metodo para codificação
+    // Metodo para codificação (password_hash).
     public function codificaSenha(string $senha): string {
         return password_hash($senha, PASSWORD_DEFAULT);
     }
 
-   // Getters e Setters
+    // Metodo para verificação de senha (password_verify faz a comparação das duas senhas digitada e banco).
+    public function verifaSenha(string $senhaFormulario, string $senhaBanco): string {
+        if(password_verify($senhaFormulario, $senhaBanco)){
+            // Se for igual mantemos a senha do banco.
+            return $senhaBanco;
+        } else {
+            // Se forem diferentes passamos a codificação para a nova senha.
+            return $this->codificaSenha($senhaFormulario);
+        }
+    }
 
+
+
+   // Getters e Setters
    // ID
     public function getId(): int {
         return $this->id;
