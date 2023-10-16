@@ -47,6 +47,24 @@ class Usuario {
         return $resultado;
     }
 
+    // Meotodo de exibição(SELECT) de UM usuario
+    public function listarUm(): array {
+        $sql = "SELECT * FROM usuarios WHERE id = :id";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $this->id ,PDO::PARAM_INT);
+            $consulta->execute();
+            $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $erro) {
+            die("Erro ao exibir dados de um usuário". $erro->getMessage());
+        }
+        return $resultado;
+    }
+
+    // Metodo de atualização(UPDATE) de dados de UM usuario
+    
+
+
     // METODOS DE CODIFICAÇÃO/COMPARAÇÃO DA SENHA
 
     // Metodo para codificação
