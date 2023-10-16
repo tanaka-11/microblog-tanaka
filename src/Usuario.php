@@ -62,7 +62,20 @@ class Usuario {
     }
 
     // Metodo de atualização(UPDATE) de dados de UM usuario
-    
+    public function atualizar(): void {
+        $sql = "UPDATE usuarios SET nome = :nome, email = :email, senha = :senha, tipo = :tipo WHERE id - :id";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue("id", $this->id, PDO::PARAM_INT);
+            $consulta->bindValue(":nome", $this->nome, PDO::PARAM_STR);
+            $consulta->bindValue(":email", $this->email, PDO::PARAM_STR);
+            $consulta->bindValue("senha", $this->senha, PDO::PARAM_STR);
+            $consulta->bindValue("tipo", $this->tipo, PDO::PARAM_STR);
+            $consulta->execute();
+        } catch (Exception $erro) {
+            die("Erro ao atualizar dados de um usuário". $erro->getMessage());
+        }
+    }
 
 
     // METODOS DE CODIFICAÇÃO/COMPARAÇÃO DA SENHA

@@ -3,20 +3,26 @@
 use Microblog\{Usuario, Utilitarios};
 require_once "../inc/cabecalho-admin.php";
 
+// Script de exibição
 // Criação do objeto
 $usuario = new Usuario;
-
 // Dados do ID
 $usuario->setId($_GET['id']);
-
 // Instancia
 $dadosDoUsuario = $usuario->listarUm();
 
-// if(isset($_POST['atualizar'])){
-// 	$usuario->setNome($_POST['nome']);
-// 	$usuario->setEmail($_POST['email']);
-// 	$usuario->setTipo($_POST['tipo']);
-// }
+// Script de atualização
+if(isset($_POST['atualizar'])){
+	// Dados ja sanitizados
+	$usuario->setNome($_POST['nome']);
+	$usuario->setEmail($_POST['email']);
+	$usuario->setTipo($_POST['tipo']);
+
+	// Senha
+	$usuario->setSenha($_POST['senha']);
+
+	$usuario->atualizar();
+}
 ?>
 
 
