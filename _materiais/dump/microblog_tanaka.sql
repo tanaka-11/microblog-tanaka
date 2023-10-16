@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10-Out-2023 às 16:48
+-- Tempo de geração: 16-Out-2023 às 16:54
 -- Versão do servidor: 10.4.28-MariaDB
 -- versão do PHP: 8.2.4
 
@@ -72,8 +72,9 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `tipo`) VALUES
 (1, 'Marina Tanaka', 'huttenloucher@gmail.com', '$2y$10$rDfybovtq2gaKLarynqCX.bv0Hf0zVOKLb.H6gb.1NsZsRDDCtZ.S', 'admin'),
-(2, 'Luis Fernando', 'aaa@gmail.com', '$2y$10$p.YyXyiLDb1XlVA9qzZk2uvVILPnlYmjZyP5LHyz2N.BV2k6h6nyq', 'editor'),
-(3, 'Beatriz Kogici', 'mozin@gmail.com', '$2y$10$LBxSvnegDdq/ICxeaq/N8ONH1hteQ3igXPLCm7CT5DKitQD2/.0S2', 'editor');
+(2, 'Luis Fernando', 'aaaabbb@gmail.com', '$2y$10$p.YyXyiLDb1XlVA9qzZk2uvVILPnlYmjZyP5LHyz2N.BV2k6h6nyq', 'admin'),
+(3, 'Beatriz Kogici', 'mozin@gmail.com', '$2y$10$LBxSvnegDdq/ICxeaq/N8ONH1hteQ3igXPLCm7CT5DKitQD2/.0S2', 'editor'),
+(6, 'Mariana Koki', 'koki@gmail.com', '$2y$10$1IAfmL/tm9z1ExmtYpDmDufiy2wWzI/GGKuNMbs/T4oP..IKIirtS', 'editor');
 
 --
 -- Índices para tabelas despejadas
@@ -120,7 +121,7 @@ ALTER TABLE `noticias`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restrições para despejos de tabelas
