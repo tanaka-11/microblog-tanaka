@@ -30,7 +30,13 @@ final class ControleDeAcesso {
         $_SESSION['tipo'] = $tipo;
     }
 
-    //
-    
+    // Metodo de saida dos usuarios
+    public function logout(): void {
+        session_start();
+        session_destroy();
+        header('location:../login.php?logout');
+        exit();
+    }
+
 
 }

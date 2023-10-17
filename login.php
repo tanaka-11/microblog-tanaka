@@ -6,7 +6,9 @@ require_once "inc/cabecalho.php";
 
 // Programação das mensagens de feedback sobre login dos usuarios
 if(isset($_GET['campos_obrigatorios'])) {
-	$feedback = "Preencha e-mail e senha!";
+	$feedback = "Preencha e-mail e senha";
+} elseif(isset($_GET['dados_incorretos'])){
+	$feedback = "Preencha novamente";
 }
 
 ?>
@@ -37,25 +39,42 @@ if(isset($_GET['campos_obrigatorios'])) {
 
 			</form>
 
+			<!-- SCRIPT DE VERIFICAÇÃO DOS DADOS -->
 			<?php
 				if(isset($_POST['entrar'])) {
-					// Verificando se os campos 'email' e 'senha' estão vazio.
+					// Verificando se os campos 'email' e 'senha' estão vazios
 					if (empty($_POST['email']) || empty($_POST['senha'])) {
+
 						// Passando o parametro 'campos_obrigatorios' na url
 						header('location:login.php?campos_obrigatorios');
+
 					} else {
+
 						// Capturando os dados
 						$usuario = new Usuario;
 						$usuario->setEmail($_POST['email']);
 
 						// Buscando os dados
 						$dados = $usuario->buscar();
-						Utilitarios::dump($dados);
 
-						// Se houver usuario encontrado
-												
+						// Se não houver usuario encontrado // OU if ($dados === false)
+						if(!$dados)	{
+							// Passando o parametro 'dados_incorretos' na url
+							header('location:login.php?dados_incorretos');
 
-						// Verficação de senha e processo de Login 
+						} else {
+							// Usuario encontrado
+							// Verficação de senha e processo de Login com variaveis de sessão 
+							if (password_verify($_POST['senha'], $dados['senha'])){
+								$sessao = new ControleDeAcesso;
+								$sessao->login($dados['id'], $dados['nome'], $dados['tipo']);
+								header('location:admin/index.php');
+							} else {
+								header('location:login.php?dados_incorretos');
+							}
+						}
+
+						
 
 
 					}
