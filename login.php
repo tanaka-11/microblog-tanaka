@@ -1,11 +1,12 @@
 <?php 
 // Namespace e require
-use Microblog\{Usuario, ControleDeAcesso};
+use Microblog\{Usuario, ControleDeAcesso, Utilitarios};
 require_once "inc/cabecalho.php";
+
 
 // Programação das mensagens de feedback sobre login dos usuarios
 if(isset($_GET['campos_obrigatorios'])) {
-	$feedback = "Você deve fazer o login primeiro!";
+	$feedback = "Preencha e-mail e senha!";
 }
 
 ?>
@@ -16,7 +17,7 @@ if(isset($_GET['campos_obrigatorios'])) {
         <h2 class="text-center fw-light">Acesso à área administrativa</h2>
 
         <form action="" method="post" id="form-login" name="form-login" class="mx-auto w-50">
-			
+
 				<!-- Mensagem Feedback -->
                 <?php if(isset($feedback)) {?>
 				<p class="my-2 alert alert-warning text-center"><?=$feedback?></p>
@@ -48,7 +49,8 @@ if(isset($_GET['campos_obrigatorios'])) {
 						$usuario->setEmail($_POST['email']);
 
 						// Buscando os dados
-
+						$dados = $usuario->buscar();
+						Utilitarios::dump($dados);
 
 						// Se houver usuario encontrado
 												

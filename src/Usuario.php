@@ -108,7 +108,9 @@ class Usuario {
     }
 
     // METODOS DE BUSCA (PHP +7.4)
-    // Metodo para buscar usuario no banco de dados
+    // Obs. *Metodos -7.4 não utilizar tipos de saida (array | bool)
+
+    // Metodo para buscar usuario no banco de dados 
     public function buscar(): array | bool {
         $sql = "SELECT * FROM usuarios WHERE email = :email";
         try {
