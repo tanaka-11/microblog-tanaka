@@ -21,4 +21,12 @@ final class ControleDeAcesso {
             die(); // ou o comando exit();
         }
     }
+
+    // Metodo para o acesso de usuarios
+    public function login(int $id, string $nome, string $tipo): void {
+        // Criamos variaveis de sessão no momento de login contendo os dados do usuario para o controle.
+        $_SESSION['id'] = $id;
+        $_SESSION['nome'] = $nome;
+        $_SESSION['tipo'] = $tipo;
+    }
 }
