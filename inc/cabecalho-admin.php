@@ -1,5 +1,13 @@
 <?php
+// Namespace e require
+use Microblog\{ControleDeAcesso};
 require_once "../vendor/autoload.php";
+
+// Criação do objeto para acesso dos metodos
+$sessao = new ControleDeAcesso;
+
+// Executando metodo de verificação de login
+$sessao->verificaAcesso();
 ?>
 
 <!DOCTYPE html>
