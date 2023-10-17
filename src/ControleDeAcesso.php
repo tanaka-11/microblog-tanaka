@@ -29,4 +29,8 @@ final class ControleDeAcesso {
         $_SESSION['nome'] = $nome;
         $_SESSION['tipo'] = $tipo;
     }
+
+    //
+    
+
 }

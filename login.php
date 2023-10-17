@@ -16,7 +16,8 @@ if(isset($_GET['campos_obrigatorios'])) {
         <h2 class="text-center fw-light">Acesso à área administrativa</h2>
 
         <form action="" method="post" id="form-login" name="form-login" class="mx-auto w-50">
-
+			
+				<!-- Mensagem Feedback -->
                 <?php if(isset($feedback)) {?>
 				<p class="my-2 alert alert-warning text-center"><?=$feedback?></p>
 				<?php } ?>
@@ -42,7 +43,19 @@ if(isset($_GET['campos_obrigatorios'])) {
 						// Passando o parametro 'campos_obrigatorios' na url
 						header('location:login.php?campos_obrigatorios');
 					} else {
-						echo 'Dados okay';
+						// Capturando os dados
+						$usuario = new Usuario;
+						$usuario->setEmail($_POST['email']);
+
+						// Buscando os dados
+
+
+						// Se houver usuario encontrado
+												
+
+						// Verficação de senha e processo de Login 
+
+
 					}
 				}
 			?>

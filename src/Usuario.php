@@ -107,6 +107,21 @@ class Usuario {
         }
     }
 
+    // METODOS DE BUSCA (PHP +7.4)
+    // Metodo para buscar usuario no banco de dados
+    public function buscar(): array | bool {
+        $sql = "SELECT * FROM usuarios WHERE email = :email";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue("email", $this->email, PDO::PARAM_STR);
+            $consulta->execute();
+            $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+        }  catch (Exception $erro) {
+            die("Erro ao consultar usuario: ".$erro->getMessage());
+        }
+        return $resultado;
+    }
+
 
 
    // Getters e Setters
