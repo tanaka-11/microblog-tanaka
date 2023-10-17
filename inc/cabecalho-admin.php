@@ -8,6 +8,9 @@ $sessao = new ControleDeAcesso;
 
 // Executando metodo de verificação de login
 $sessao->verificaAcesso();
+
+// Executando metodo de logout
+if (isset($_GET['sair'])) $sessao->logout();
 ?>
 
 <!DOCTYPE html>
@@ -40,15 +43,19 @@ $sessao->verificaAcesso();
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="meu-perfil.php">Meu perfil</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="categorias.php">Categorias</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="noticias.php">Notícias</a>
             </li>
+            
             <li class="nav-item">
                 <a class="nav-link" href="usuarios.php">Usuários</a>
             </li>
@@ -56,8 +63,10 @@ $sessao->verificaAcesso();
             <li class="nav-item">
                 <a class="nav-link" href="../index.php" target="_blank">Área pública</a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link fw-bold" href=""> <i class="bi bi-x-circle"></i> Sair</a>
+                <!-- link dinamico para saida 'href' -->
+                <a class="nav-link fw-bold" href="?sair"> <i class="bi bi-x-circle"></i> Sair</a>
             </li>
         </ul>
 

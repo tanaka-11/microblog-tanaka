@@ -4,11 +4,18 @@ use Microblog\{Usuario, ControleDeAcesso, Utilitarios};
 require_once "inc/cabecalho.php";
 
 
-// Programação das mensagens de feedback sobre login dos usuarios
-if(isset($_GET['campos_obrigatorios'])) {
+// Script das mensagens de feedback sobre login/logout dos usuarios
+if (isset ($_GET['campos_obrigatorios']) ) {
 	$feedback = "Preencha e-mail e senha";
-} elseif(isset($_GET['dados_incorretos'])){
+
+} elseif (isset ($_GET['dados_incorretos']) ) {
 	$feedback = "Preencha novamente";
+
+} elseif (isset ($_GET['logout']) ) {
+	$feedback = "Você saiu do sistema";
+
+} elseif (isset ($_GET['acesso_proibido'])){
+	$feedback = "Faça o login";
 }
 
 ?>
@@ -44,7 +51,6 @@ if(isset($_GET['campos_obrigatorios'])) {
 				if(isset($_POST['entrar'])) {
 					// Verificando se os campos 'email' e 'senha' estão vazios
 					if (empty($_POST['email']) || empty($_POST['senha'])) {
-
 						// Passando o parametro 'campos_obrigatorios' na url
 						header('location:login.php?campos_obrigatorios');
 

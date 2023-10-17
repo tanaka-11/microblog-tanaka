@@ -17,7 +17,7 @@ final class ControleDeAcesso {
         // Se  não existir uma variavel de sessão chamada "id", ou seja, não logado então termine a sessão e retorne para o login
         if (!isset($_SESSION['id'])) {
             session_destroy();
-            header('location:../login.php');
+            header('location:../login.php?acesso_proibido');
             die(); // ou o comando exit();
         }
     }
