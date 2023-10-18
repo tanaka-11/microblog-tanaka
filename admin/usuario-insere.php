@@ -3,6 +3,8 @@
 use Microblog\Usuario;
 require_once "../inc/cabecalho-admin.php";
 
+// Verificação do tipo de usuario
+$sessao->verificaAcessoAdmin();
 
 
 if(isset($_POST['inserir'])){

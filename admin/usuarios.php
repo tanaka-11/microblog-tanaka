@@ -3,8 +3,9 @@
 use Microblog\{Usuario, Utilitarios}; 
 require_once "../inc/cabecalho-admin.php";
 
-// Objeto
+// Objeto do usuario e verificação do tipo de usuario
 $usuario = new Usuario;
+$sessao->verificaAcessoAdmin();
 
 // Instancia
 $dadosDoUsuario = $usuario->listar();

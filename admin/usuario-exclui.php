@@ -7,6 +7,9 @@ require_once '../vendor/autoload.php';
 $sessao = new ControleDeAcesso;
 $sessao->verificaAcesso();
 
+// Verificação do tipo de usuario
+$sessao->verificaAcessoAdmin();
+
 // Script de exclusão
 $usuario = new Usuario;
 $usuario->setId($_GET['id']);
