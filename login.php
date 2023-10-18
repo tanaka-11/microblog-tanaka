@@ -29,7 +29,7 @@ if (isset ($_GET['campos_obrigatorios']) ) {
 
 				<!-- Mensagem Feedback -->
                 <?php if(isset($feedback)) {?>
-				<p class="my-2 alert alert-warning text-center"><?=$feedback?></p>
+					<p class="my-2 alert alert-warning text-center"><?=$feedback?></p>
 				<?php } ?>
 
 				<div class="mb-3">
@@ -53,9 +53,7 @@ if (isset ($_GET['campos_obrigatorios']) ) {
 					if (empty($_POST['email']) || empty($_POST['senha'])) {
 						// Passando o parametro 'campos_obrigatorios' na url
 						header('location:login.php?campos_obrigatorios');
-
 					} else {
-
 						// Capturando os dados
 						$usuario = new Usuario;
 						$usuario->setEmail($_POST['email']);
@@ -67,7 +65,6 @@ if (isset ($_GET['campos_obrigatorios']) ) {
 						if(!$dados)	{
 							// Passando o parametro 'dados_incorretos' na url
 							header('location:login.php?dados_incorretos');
-
 						} else {
 							// Usuario encontrado
 							// Verficação de senha e processo de Login com variaveis de sessão 
@@ -79,9 +76,6 @@ if (isset ($_GET['campos_obrigatorios']) ) {
 								header('location:login.php?dados_incorretos');
 							}
 						}
-
-						
-
 
 					}
 				}

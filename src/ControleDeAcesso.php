@@ -22,6 +22,15 @@ final class ControleDeAcesso {
         }
     }
 
+    // Metodo para verificação de acesso ADMIN
+    public function verificaAcessoAdmin(): void {
+        // Verificando se o tipo logado NÃO é admin com o comando (!==)
+        if($_SESSION['tipo'] !== 'admin' ){
+            header('location:nao-autorizado.php');
+            die();
+        }
+    }
+
     // Metodo para o acesso de usuarios
     public function login(int $id, string $nome, string $tipo): void {
         // Criamos variaveis de sessão no momento de login contendo os dados do usuario para o controle.
