@@ -29,10 +29,13 @@ require_once "../inc/cabecalho-admin.php";
                 Notícias
             </a>
             
+             <!-- Condicional para mostrar a parte de usuarios para quem tiver nivel ADMIN -->
+            <?php if($_SESSION['tipo'] === 'admin'){?>
 			<a class="btn btn-dark bg-gradient btn-lg" href="usuarios.php">
                 <i class="bi bi-people"></i> <br>
                 Usuários
             </a>
+            <?php } ?>
         </div>
     </div>
 </article>
