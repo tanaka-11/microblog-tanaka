@@ -10,6 +10,13 @@ $sessao->verificaAcessoAdmin();
 $categoria = new Categoria;
 $categoria->setId($_GET['id']);
 $dados = $categoria->lerUm();
+
+// Script de atualização
+if(isset($_POST['atualizar'])) {
+	$categoria->setNome($_POST['nome']);
+	$categoria->atualizar();
+	header('location:categorias.php');
+}
 ?>
 
 
