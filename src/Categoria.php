@@ -69,6 +69,18 @@ class Categoria {
         }
     }
 
+    // Metodo de exclusão (DELETE) dos dados de uma categoria
+    public function deletar(): void {
+        $sql = "DELETE FROM categorias WHERE id = :id";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
+            $consulta->execute();
+        }  catch (Exception $erro) {
+            die("Erro ao excluir: ".$erro->getMessage());
+        }
+    }
+
     // Getters e Setters
     // ID
     public function getId():int {
