@@ -27,7 +27,20 @@ class Categoria {
         } catch (Exception $erro) {
             die("Erro ao inserir categoria". $erro->getMessage());
         }
-    } 
+    }
+    
+    // Metodo de exibição(SELECT) das categorias
+    public function ler(): array {
+        $sql = "SELECT * FROM categorias ORDER BY id";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->execute();
+            $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $erro) {
+            die("Erro ao exibir dados das categorias". $erro->getMessage());
+        }
+        return $resultado;
+    }
 
 
     // Getters e Setters

@@ -1,5 +1,13 @@
-<?php 
+<?php
+// Namespace e requires
+use Microblog\{Categoria}; 
 require_once "../inc/cabecalho-admin.php";
+
+// Objeto e verficação do tipo de usuario
+$categoria = new Categoria;
+$sessao->verificaAcessoAdmin();
+// Chamada do metodo de exibição dos dados
+$dados = $categoria->ler();
 ?>
 
 
@@ -7,7 +15,7 @@ require_once "../inc/cabecalho-admin.php";
 	<article class="col-12 bg-white rounded shadow my-1 py-4">
 		
 		<h2 class="text-center">
-		Categorias <span class="badge bg-dark">X</span>
+		Categorias <span class="badge bg-dark"><?=count($dados)?></span>
 		</h2>
 
 		<p class="text-center mt-5">
@@ -28,20 +36,23 @@ require_once "../inc/cabecalho-admin.php";
 
 				<tbody>
 
+					<!-- Dados das categorias -->
+					<?php foreach($dados as $categorias) {?>
 					<tr>
-						<td> Nome... </td>
+						<td> <?=$categorias['nome']?> </td>
+
+						<!-- Links Dinamicos -->
 						<td class="text-center">
-							<a class="btn btn-warning" 
-							href="categoria-atualiza.php">
-							<i class="bi bi-pencil"></i> Atualizar
+							<a class="btn btn-warning" href="categoria-atualiza.php?id=<?=$categorias['id']?>">
+								<i class="bi bi-pencil"></i> Atualizar
 							</a>
 						
-							<a class="btn btn-danger excluir" 
-							href="categoria-exclui.php">
-							<i class="bi bi-trash"></i> Excluir
+							<a class="btn btn-danger excluir" href="categoria-exclui.php?id=<?=$categorias['id']?>">
+								<i class="bi bi-trash"></i> Excluir
 							</a>
 						</td>
 					</tr>
+				<?php } ?>	
 
 				</tbody>                
 			</table>

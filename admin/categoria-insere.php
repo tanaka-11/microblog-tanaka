@@ -15,6 +15,9 @@ if(isset($_POST['inserir'])) {
 
 	// Chamando metodo de inserir categoria
 	$categoria->inserir();
+
+	// Redirecionamento
+	header('location:categorias.php');
 }
 ?>
 
