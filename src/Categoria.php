@@ -42,6 +42,19 @@ class Categoria {
         return $resultado;
     }
 
+    // Metodo de exibição de UMA categoria
+    public function lerUm(): array {
+        $sql = "SELECT * FROM categorias WHERE id = :id";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
+            $consulta->execute();
+            $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $erro) {
+            die("Erro ao exibir dados de uma categorias". $erro->getMessage());
+        }
+        return $resultado;
+    }
 
     // Getters e Setters
     // ID

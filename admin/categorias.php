@@ -6,6 +6,7 @@ require_once "../inc/cabecalho-admin.php";
 // Objeto e verficação do tipo de usuario
 $categoria = new Categoria;
 $sessao->verificaAcessoAdmin();
+
 // Chamada do metodo de exibição dos dados
 $dados = $categoria->ler();
 ?>

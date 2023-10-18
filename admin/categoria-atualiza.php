@@ -1,5 +1,15 @@
 <?php 
+// Namespace e requires
+use Microblog\{Categoria};
 require_once "../inc/cabecalho-admin.php";
+
+// Verificação do tipo de usuario
+$sessao->verificaAcessoAdmin();
+
+// Script de exibição
+$categoria = new Categoria;
+$categoria->setId($_GET['id']);
+$dados = $categoria->lerUm();
 ?>
 
 
@@ -14,7 +24,7 @@ require_once "../inc/cabecalho-admin.php";
 
 			<div class="mb-3">
 				<label class="form-label" for="nome">Nome:</label>
-				<input class="form-control" type="text" id="nome" name="nome" required>
+				<input value="<?=$dados['nome']?>" class="form-control" type="text" id="nome" name="nome" required>
 			</div>
 			
 			<button class="btn btn-primary" name="atualizar"><i class="bi bi-arrow-clockwise"></i> Atualizar</button>
