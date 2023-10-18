@@ -7,8 +7,27 @@ use PDO, Exception;
 class Categoria {
     private int $id;
     private string $nome;
-
+    private PDO $conexao;
+    
     // Conexão via construtor
+    public function __construct(){
+        $this->conexao = Banco::conecta();
+    }
+
+    // METODOS CRUD
+    // Metodo de inserir (INSERT) dados de categoria
+    public function inserir(): void {
+        $sql = "INSERT INTO categorias(nome) VALUES (:nome)";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":nome", $this->nome, PDO::PARAM_STR);
+            $consulta->execute();
+
+        } catch (Exception $erro) {
+            die("Erro ao inserir categoria". $erro->getMessage());
+        }
+    } 
 
 
     // Getters e Setters
@@ -31,4 +50,16 @@ class Categoria {
         $this->nome = filter_var($nome, FILTER_SANITIZE_SPECIAL_CHARS);
         return $this;
     }
+
+    // CONEXAO
+    public function getConexao():PDO {
+        return $this->conexao;
+    }
+
+
+    public function setConexao(PDO $conexao):self {
+        $this->conexao = $conexao;
+        return $this;
+    }
+
 }
