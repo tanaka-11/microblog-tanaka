@@ -9,6 +9,11 @@ require_once "../inc/cabecalho-admin.php";
         <!-- Variaveis de sessão podem ser utilizados diretamente -->
         <h2 class="display-4">Olá <?=$_SESSION['nome']?> </h2>
 
+        <!-- Mensagem de feedback da atualização do meu-perfil -->
+        <?php if(isset($_GET['perfil_atualizado'])) {?>
+            <p class="alert alert-primary">Dados Atualizados com Sucesso</p>
+        <?php } ?>
+
         <p class="fs-5">Você está no <b>painel de controle e administração</b> do
 		site Microblog e seu <b>nível de acesso</b> é <span class="badge bg-dark"> <?=$_SESSION['tipo']?> </span>.</p>
         <hr class="my-4">
