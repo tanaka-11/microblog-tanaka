@@ -31,7 +31,7 @@ final class ControleDeAcesso {
         }
     }
 
-    // Metodo para o acesso de usuarios
+    // Metodo com sessao($_SESSION) para o acesso de usuarios 
     public function login(int $id, string $nome, string $tipo): void {
         // Criamos variaveis de sessão no momento de login contendo os dados do usuario para o controle.
         $_SESSION['id'] = $id;
