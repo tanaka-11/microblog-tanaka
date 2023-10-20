@@ -38,17 +38,17 @@ $dados = $categoria->ler();
 				<tbody>
 
 					<!-- Dados das categorias -->
-					<?php foreach($dados as $categorias) {?>
+					<?php foreach($dados as $umaCategoria) {?>
 					<tr>
-						<td> <?=$categorias['nome']?> </td>
+						<td> <?=$umaCategoria['nome']?> </td>
 
 						<!-- Links Dinamicos -->
 						<td class="text-center">
-							<a class="btn btn-warning" href="categoria-atualiza.php?id=<?=$categorias['id']?>">
+							<a class="btn btn-warning" href="categoria-atualiza.php?id=<?=$umaCategoria['id']?>">
 								<i class="bi bi-pencil"></i> Atualizar
 							</a>
 						
-							<a class="btn btn-danger excluir" href="categoria-exclui.php?id=<?=$categorias['id']?>">
+							<a class="btn btn-danger excluir" href="categoria-exclui.php?id=<?=$umaCategoria['id']?>">
 								<i class="bi bi-trash"></i> Excluir
 							</a>
 						</td>
