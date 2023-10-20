@@ -4,7 +4,7 @@ namespace Microblog;
 use PDO, Exception;
 
 // Classe
-class Categoria {
+final class Categoria {
     private int $id;
     private string $nome;
     private PDO $conexao;
@@ -18,7 +18,6 @@ class Categoria {
     // Metodo de inserir (INSERT) dados de categoria
     public function inserir(): void {
         $sql = "INSERT INTO categorias(nome) VALUES (:nome)";
-
         try {
             $consulta = $this->conexao->prepare($sql);
             $consulta->bindValue(":nome", $this->nome, PDO::PARAM_STR);

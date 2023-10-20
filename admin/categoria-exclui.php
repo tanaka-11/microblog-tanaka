@@ -3,9 +3,10 @@
 use Microblog\{Categoria, ControleDeAcesso};
 require_once '../vendor/autoload.php';
 
-// Criação do objeto e executando metodo para verificação de login
+// Criação do objeto e executando metodo para verificação de login e verificação do tipo de usuario
 $sessao = new ControleDeAcesso;
 $sessao->verificaAcesso();
+$sessao->verificaAcessoAdmin();
 
 // Script de exclusão
 $categoria = new Categoria;
