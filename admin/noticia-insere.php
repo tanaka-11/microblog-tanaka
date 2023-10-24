@@ -21,8 +21,9 @@ if(isset($_POST['inserir'])){
 	// ID da Categoria via associação de classes
 	$noticia->categoria->setId($_POST['categoria']);
 	
-	// Capturando o arquivo de imagem, enviando pro servidor, capturando o nome(extensão) e enviando ao banco de dados
-	
+	// Capturando o arquivo de imagem, enviando pro servidor, capturando o nome(extensão) e enviando ao banco de dados com o array super global($_FILES)
+	$imagem = $_FILES['imagem'];
+	Utilitarios::dump($imagem);
 
 }
 ?>

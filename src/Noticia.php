@@ -52,6 +52,34 @@ final class Noticia {
         }
         
     }
+    
+    // Metodo de UPLOAD de foto
+    public function upload(array $arquivo): void {
+        // Validação dos tipos
+        $tiposValidos = ["image/png", "image/jpeg", "image/gif", "image/svg+xml"];
+
+        // Verificação dos tipos (Utilizamos o !in_array para saber se não é um tipo valido)
+        if(!in_array($arquivo['type'], $tiposValidos)){
+            die("
+                <script>
+                    alert('Formato inválido');
+                    history.back();
+                </script>
+                ");
+        }
+
+        // Acessando apenas o nome do arquivo
+        $nome = $arquivo['name'];
+
+        // Acessando os dados de armazenamento temporários
+        $temporario = $arquivo['tmp_name'];
+
+        // Definindo a pasta de destino da imagem
+        $pastaFinal = '../imagens/'.$nome;
+
+        // Enviando da area temporaria para a pasta de destino
+        move_uploaded_file($temporario, $pastaFinal);
+    }
 
     // Getters e Setters
     // ID
