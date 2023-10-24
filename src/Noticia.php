@@ -29,20 +29,29 @@ final class Noticia {
 
     // Metodos CRUD
     // Inserir (INSERT)
-    // public function inserir(): void {
-    //     $sql = "INSERT INTO noticias 
-    //     (data, titulo, texto, resumo, imagem, destaque, termo)
-    //     VALUES 
-    //     (:data, :titulo, :texto, :resumo, :imagem, :destaque, :termo)";
+    public function inserir(): void {
+        $sql = "INSERT INTO noticias(
+            titulo, texto, resumo, imagem, destaque, usuario_id, categoria_id
+        ) VALUES (
+            :titulo, :texto, :resumo, :imagem, :destaque, :usuario_id, :categoria_id)";
 
-    //     try {
-    //         $consulta = $this->conexao->prepare($sql);
-    //         $consulta->bindValue(":data", $this->data, PDO::PARAM_STR);
-    //     } catch (Exception $erro) {
-    //         die("Erro ao inserir". $erro->getMessage());
-    //     }
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":titulo", $this->titulo, PDO::PARAM_STR);
+            $consulta->bindValue(":texto", $this->texto, PDO::PARAM_STR);
+            $consulta->bindValue(":resumo", $this->resumo, PDO::PARAM_STR);
+            $consulta->bindValue(":imagem", $this->imagem, PDO::PARAM_STR);
+            $consulta->bindValue(":destaque", $this->destaque, PDO::PARAM_STR);
+            
+            // Atribuindo valores com a associação entre Classes 
+            $consulta->bindValue(":usuario_id", $this->usuario->getId(), PDO::PARAM_INT);
+            $consulta->bindValue(":categoria_id", $this->categoria->getId(), PDO::PARAM_INT);
+
+        } catch (Exception $erro) {
+            die("Erro ao inserir". $erro->getMessage());
+        }
         
-    // }
+    }
 
     // Getters e Setters
     // ID
