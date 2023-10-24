@@ -30,7 +30,7 @@ final class Categoria {
     
     // Metodo de exibição(SELECT) das categorias
     public function ler(): array {
-        $sql = "SELECT * FROM categorias ORDER BY id";
+        $sql = "SELECT * FROM categorias ORDER BY nome";
         try {
             $consulta = $this->conexao->prepare($sql);
             $consulta->execute();

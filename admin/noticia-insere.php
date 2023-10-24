@@ -1,13 +1,15 @@
 <?php 
 // Namespace e requires
-use Microblog\{Noticia, Utilitarios};
+use Microblog\{Noticia,Utilitarios};
 require_once "../inc/cabecalho-admin.php";
 
-// Objeto
+// Objeto e verficação do tipo de usuario
 $noticia = new Noticia;
+$sessao->verificaAcessoAdmin();
 
-// Teste
-Utilitarios::dump($noticia);
+// Metodo de exibição via associação de classes 
+$dadosDeCategoria = $noticia->categoria->ler();
+
 ?>
 
 
@@ -24,9 +26,11 @@ Utilitarios::dump($noticia);
                 <label class="form-label" for="categoria">Categoria:</label>
                 <select class="form-select" name="categoria" id="categoria" required>
 					<option value=""></option>
-					<option value="1">Ciência</option>
-					<option value="2">Educação</option>
-					<option value="3">Tecnologia</option>
+				<?php foreach($dadosDeCategoria as $umaCategoria) { ?>	
+					<option value="<?=$umaCategoria['id']?>">
+						<?=$umaCategoria['nome']?>
+					</option>
+				<?php } ?>	
 				</select>
 			</div>
 
