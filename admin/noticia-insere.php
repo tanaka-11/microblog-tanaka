@@ -3,13 +3,28 @@
 use Microblog\{Noticia,Utilitarios};
 require_once "../inc/cabecalho-admin.php";
 
-// Objeto e verficação do tipo de usuario
+// Objeto
 $noticia = new Noticia;
-$sessao->verificaAcessoAdmin();
 
 // Metodo de exibição via associação de classes 
 $dadosDeCategoria = $noticia->categoria->ler();
 
+if(isset($_POST['inserir'])){
+	$noticia->setTitulo($_POST['titulo']);
+	$noticia->setTexto($_POST['texto']);
+	$noticia->setResumo($_POST['resumo']);
+	$noticia->setDestaque($_POST['destaque']);
+
+	// ID do Usuario via associação de classes
+	$noticia->usuario->setId($_SESSION['id']);
+
+	// ID da Categoria via associação de classes
+	$noticia->categoria->setId($_POST['categoria']);
+	
+	// Capturando o arquivo de imagem, enviando pro servidor, capturando o nome(extensão) e enviando ao banco de dados
+	
+
+}
 ?>
 
 
@@ -20,7 +35,8 @@ $dadosDeCategoria = $noticia->categoria->ler();
 		Inserir nova notícia
 		</h2>
 				
-		<form class="mx-auto w-75" action="" method="post" id="form-inserir" name="form-inserir">
+		<!-- Passando o atributo enctype="multipart/form-data" para funcionar o envio de imagem-->
+		<form class="mx-auto w-75" action="" method="post" id="form-inserir" name="form-inserir" enctype="multipart/form-data">
 
             <div class="mb-3">
                 <label class="form-label" for="categoria">Categoria:</label>
@@ -54,6 +70,7 @@ $dadosDeCategoria = $noticia->categoria->ler();
                 <label class="form-label" for="imagem" class="form-label">Selecione uma imagem:</label>
                 <input required class="form-control" type="file" id="imagem" name="imagem"
                 accept="image/png, image/jpeg, image/gif, image/svg+xml">
+				<!-- Mime-Type com a tag "accept" -->
 			</div>
 			
             <div class="mb-3">
