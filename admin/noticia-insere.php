@@ -1,5 +1,13 @@
 <?php 
+// Namespace e requires
+use Microblog\{Noticia, Utilitarios};
 require_once "../inc/cabecalho-admin.php";
+
+// Objeto
+$noticia = new Noticia;
+
+// Teste
+Utilitarios::dump($noticia);
 ?>
 
 
