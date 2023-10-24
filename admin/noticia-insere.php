@@ -21,10 +21,21 @@ if(isset($_POST['inserir'])){
 	// ID da Categoria via associação de classes
 	$noticia->categoria->setId($_POST['categoria']);
 	
-	// Capturando o arquivo de imagem, enviando pro servidor, capturando o nome(extensão) e enviando ao banco de dados com o array super global($_FILES)
+	// Script para o upload de imagem
+	// Capturando o arquivo de imagem
 	$imagem = $_FILES['imagem'];
-	Utilitarios::dump($imagem);
 
+	// Enviando pro servidor
+	$noticia->upload($imagem);
+
+	// Capturando o nome(extensão)
+	$noticia->setImagem($imagem['name']);
+	
+	// Executando o metodo
+	$noticia->inserir();
+
+	// Redirecionamento
+	header('location:noticias.php');
 }
 ?>
 

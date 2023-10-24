@@ -46,7 +46,7 @@ final class Noticia {
             // Atribuindo valores com a associação entre Classes 
             $consulta->bindValue(":usuario_id", $this->usuario->getId(), PDO::PARAM_INT);
             $consulta->bindValue(":categoria_id", $this->categoria->getId(), PDO::PARAM_INT);
-
+            $consulta->execute();
         } catch (Exception $erro) {
             die("Erro ao inserir". $erro->getMessage());
         }
