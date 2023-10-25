@@ -1,5 +1,19 @@
 <?php 
+//Namespace e requires
+use Microblog\{Noticia, Utilitarios};
 require_once "../inc/cabecalho-admin.php";
+
+// Objeto
+$noticia = new Noticia;
+
+// Capturando dados com associação de classes
+$noticia->usuario->setId($_SESSION['id']);
+$noticia->usuario->setTipo($_SESSION['tipo']);
+
+// Chamada do metodo de exibição
+$dadosDeNoticia = $noticia->listar();
+Utilitarios::dump($dadosDeNoticia);
+
 ?>
 
 
