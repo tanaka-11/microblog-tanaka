@@ -12,7 +12,7 @@ $noticia->usuario->setTipo($_SESSION['tipo']);
 
 // Chamada do metodo de exibição
 $dadosDeNoticia = $noticia->listar();
-Utilitarios::dump($dadosDeNoticia);
+
 
 ?>
 
@@ -21,7 +21,7 @@ Utilitarios::dump($dadosDeNoticia);
 	<article class="col-12 bg-white rounded shadow my-1 py-4">
 		
 		<h2 class="text-center">
-		Notícias <span class="badge bg-dark">X</span>
+		Notícias <span class="badge bg-dark"><?=count($dadosDeNoticia)?></span>
 		</h2>
 
 		<p class="text-center mt-5">
@@ -37,30 +37,42 @@ Utilitarios::dump($dadosDeNoticia);
 					<tr>
                         <th>Título</th>
                         <th>Data</th>
+						
+						<?php if($_SESSION['tipo'] === 'admin') {?>
                         <th>Autor</th>
-						<th class="text-center">Operações</th>
+						<?php } ?>
+
+						<th>Destaque</th>
+						<th colspan="2" class="text-center">Operações</th>
 					</tr>
 				</thead>
 
 				<tbody>
-
+				<?php foreach($dadosDeNoticia as $itemNoticia){?>
 					<tr>
-                        <td> Título da notícia... </td>
-                        <td> 21/12/2112 21:12 </td>
-                        <td> Autor da notícia... </td>
+                        <td> <?=$itemNoticia['titulo']?> </td>
+                        <td> <?=$itemNoticia['data']?> </td>
+
+					<?php if($_SESSION['tipo'] === 'admin') {?>
+                        <td> <?=$itemNoticia['autor']?></td>
+					<?php } ?>
+						
+						<td> <?=$itemNoticia['destaque']?> </td>
+
 						<td class="text-center">
+
 							<a class="btn btn-warning" 
-							href="noticia-atualiza.php">
+							href="noticia-atualiza.php?id=<?=$itemNoticia['id']?>">
 							<i class="bi bi-pencil"></i> Atualizar
 							</a>
 						
 							<a class="btn btn-danger excluir" 
-							href="noticia-exclui.php">
+							href="noticia-exclui.php?id=<?=$itemNoticia['id']?>">
 							<i class="bi bi-trash"></i> Excluir
 							</a>
 						</td>
 					</tr>
-
+				<?php } ?>
 				</tbody>                
 			</table>
 	</div>
