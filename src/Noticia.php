@@ -72,7 +72,7 @@ final class Noticia {
             if($this->usuario->getTipo() !== 'admin'){
                 $consulta->bindValue(":usuario_id", $this->usuario->getId(), PDO::PARAM_INT);
             }
-            
+
             $consulta->execute();
             $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $erro) {
@@ -82,6 +82,44 @@ final class Noticia {
         return $resultado;
         
     }
+
+    // Listar UM
+    public function listarUm(): array {
+
+        if ($this->usuario->getTipo() === 'admin') {
+            // Sql do Admin
+            $sql = "SELECT * FROM noticias WHERE id = :id"; 
+        } else {
+            // Sql do Editor
+            $sql = "SELECT * FROM noticias WHERE id = :id AND usuario_ID = :usuario_id";
+        }
+
+        // 
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $this->id ,PDO::PARAM_INT);
+
+            // Condicional Não Admin
+            if($this->usuario->getTipo() !== 'admin'){
+                $consulta->bindValue(":usuario_id", $this->usuario->getId(), PDO::PARAM_INT);
+            }
+
+            $consulta->execute();
+            $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+
+        } catch (Exception $erro) {
+            die("Erro ao exibir dado". $erro->getMessage());
+        }
+
+        return $resultado;
+    }
+
+    // Atualizar (UPDATE)
+    // public function atualizar(): void {
+    //     $sql = "UPDATE noticias SET "
+    // }
+
+    // Excluir (DELETE)
     
 
     // Metodo de UPLOAD de foto
