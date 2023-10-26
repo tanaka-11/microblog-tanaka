@@ -1,5 +1,8 @@
-<?php 
+<?php
+use Microblog\{Noticia}; 
 require_once "vendor/autoload.php";
+
+$noticia = new Noticia;
 ?>
 
 <!DOCTYPE html>

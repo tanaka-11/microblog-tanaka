@@ -163,7 +163,7 @@ final class Noticia {
             die("Erro ao deletar". $erro->getMessage());
         }
     }
-
+    // FINAL METODOS CRUD
 
 
     // Metodo de UPLOAD de foto
@@ -193,6 +193,25 @@ final class Noticia {
         // Enviando da area temporaria para a pasta de destino
         move_uploaded_file($temporario, $pastaFinal);
     }
+
+    // METODOS DA ÁREA PUBLICA
+
+    // listarDestaque (SELECT)
+    public function listarDestaque(): array {
+        $sql = "SELECT id, titulo, resumo, imagem FROM noticias WHERE destaque = :destaque ORDER BY data DESC";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":destaque", $this->destaque, PDO::PARAM_STR);
+            $consulta->execute();
+            $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $erro) {
+            die("Erro ao exibir". $erro->getMessage());
+        }
+        return $resultado;
+    }
+
+    //
+
 
     // Getters e Setters
     // ID
