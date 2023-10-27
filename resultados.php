@@ -1,4 +1,7 @@
 <?php
+
+use Microblog\Utilitarios;
+
 require_once "inc/cabecalho.php";
 $noticia->setTermo($_GET['busca']);
 $resultados = $noticia->buscar();
@@ -18,7 +21,7 @@ $resultados = $noticia->buscar();
             <div class="card-body">
                 <h3 class="fs-4 card-title fw-light"><?=$busca['titulo']?></h3>
                 <p class="card-text">
-                    <time><?=$busca['data']?></time> - 
+                    <time><?=Utilitarios::formataData($busca['data'])?></time> - 
                     <?=$busca['resumo']?>.
                 </p>
                 

@@ -1,4 +1,7 @@
 <?php
+
+use Microblog\Utilitarios;
+
 $todas = $noticia->listarTodas();
 ?>
 <hr class="my-5 w-50 mx-auto">
@@ -12,7 +15,8 @@ $todas = $noticia->listarTodas();
                 <?php foreach($todas as $umaNoticia){?>    
                     <a href="noticia.php?id=<?=$umaNoticia['id']?>" class="list-group-item list-group-item-action">
 
-                         <h3 class="fs-6"><time><?=$umaNoticia['data']?></time> - <?=$umaNoticia['titulo']?></h3>
+                         <h3 class="fs-6">
+                            <time><?=Utilitarios::formataData($umaNoticia['data'])?></time> - <?=$umaNoticia['titulo']?></h3>
 
                         <p><?=$umaNoticia['resumo']?></p>
                     </a>
