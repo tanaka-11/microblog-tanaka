@@ -1,4 +1,6 @@
 <?php
+// ob - sigla para Output Buffer(Gerenciamento de memoria de saida)
+ob_start();
 use Microblog\{Noticia}; 
 require_once "vendor/autoload.php";
 $noticia = new Noticia;
