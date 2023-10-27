@@ -264,6 +264,17 @@ final class Noticia {
         return $resultado;
     }
 
+    // Buscar
+    // public function buscar(): {
+    //     $sql = "";
+
+    //     try {
+    //         //code...
+    //     } catch (Exception $erro) {
+    //         die("Erro ao realizar busca". $erro->getMessage());
+    //     }
+    // 
+
     // Getters e Setters
     // ID
     public function getId(): int {
