@@ -166,6 +166,8 @@ final class Noticia {
     // FINAL METODOS CRUD
 
 
+
+
     // Metodo de UPLOAD de foto
     public function upload(array $arquivo): void {
         // Validação dos tipos
@@ -194,8 +196,9 @@ final class Noticia {
         move_uploaded_file($temporario, $pastaFinal);
     }
 
-    // METODOS DA ÁREA PUBLICA
 
+
+    // METODOS DA ÁREA PUBLICA
     // listarDestaque (SELECT)
     public function listarDestaque(): array {
         $sql = "SELECT id, titulo, resumo, imagem FROM noticias WHERE destaque = :destaque ORDER BY data DESC";
@@ -233,6 +236,30 @@ final class Noticia {
             $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
         } catch (Exception $erro) {
             die("Erro ao exibir noticia". $erro->getMessage());
+        }
+        return $resultado;
+    }
+
+    // ListarCategorias (SELECT)
+    public function listarCategorias(): array {
+        $sql = "SELECT 
+        noticias.id, 
+        noticias.titulo, 
+        noticias.data, 
+        noticias.resumo,
+        usuarios.nome AS autor, 
+        categorias.nome AS categoria 
+        FROM noticias 
+        INNER JOIN usuarios ON noticias.usuario_id = usuarios.id
+        INNER JOIN categorias ON noticias.categoria_id = categorias.id
+        WHERE noticias.categoria_id = :categoria_id";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":categoria_id", $this->categoria->getId(), PDO::PARAM_INT);
+            $consulta->execute();
+            $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $erro) {
+            die("Erro ao exibir noticia por categoria". $erro->getMessage());
         }
         return $resultado;
     }
