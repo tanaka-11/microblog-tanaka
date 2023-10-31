@@ -62,9 +62,9 @@ $listaDeCategorias = $noticia->categoria->ler();
         <form autocomplete="off" class="d-flex" action="resultados.php" method="POST" onsubmit="return false" id="form-busca">
 
           <input name="busca" class="form-control me-2" type="search" placeholder="Pesquise aqui" aria-label="Pesquise aqui" id="campo-busca">
-
-          <div id="resultados" class="mt-3 position-absolute container bg-white shadow-lg3 p-3 rounded"></div>
         </form>
+        
+        <div id="resultados" class="mt-3 position-absolute container bg-white shadow-lg3 p-3 rounded"></div>
       </div>  
     </div>
   </div>
