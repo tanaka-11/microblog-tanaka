@@ -11,6 +11,9 @@ $sessao->verificaAcesso();
 
 // Executando metodo de logout
 if (isset($_GET['sair'])) $sessao->logout();
+
+$pagina = $_SERVER['PHP_SELF'];
+echo $pagina;
 ?>
 
 <!DOCTYPE html>
