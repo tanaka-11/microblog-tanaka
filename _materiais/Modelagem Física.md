@@ -14,7 +14,6 @@ CREATE TABLE usuarios(
 );
 ```
 
-
 ```sql
 CREATE TABLE categorias(
     id SMALLINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -35,6 +34,7 @@ CREATE TABLE noticias(
     categoria_id SMALLINT NULL
 );
 ```
+
 ```sql
 ALTER TABLE noticias
     ADD CONSTRAINT fk_noticias_usuarios
@@ -48,16 +48,3 @@ ALTER TABLE noticias
     FOREIGN KEY (categoria_id) REFERENCES categorias(id)
     ON DELETE SET NULL ON UPDATE NO ACTION;
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
